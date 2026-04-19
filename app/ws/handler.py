@@ -47,7 +47,14 @@ async def websocket_endpoint(ws: WebSocket):
 
             cmd = msg.get("cmd")
             if cmd:
-                send_command(cmd)
+                raw_speed = msg.get("speed")
+                speed: int | None = None
+                if raw_speed is not None:
+                    try:
+                        speed = max(0, min(255, int(raw_speed)))
+                    except (TypeError, ValueError):
+                        pass
+                send_command(cmd, speed)
             else:
                 logger.debug("Unknown message: %s", msg)
 
