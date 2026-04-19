@@ -1,8 +1,6 @@
 fastapi[standard]
-pydantic[email]
+httpx
 pydantic-settings
 python-dotenv
-sqlalchemy
-alembic
-psycopg2-binary
-httpx
+websockets
+pyserial
